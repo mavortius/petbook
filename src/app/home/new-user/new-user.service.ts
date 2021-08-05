@@ -11,6 +11,11 @@ export class NewUserService {
   constructor(private http: HttpClient) {}
 
   registerNewUser(user: NewUser): Observable<NewUser> {
-    return this.http.post<NewUser>('http:localhost:3000/user/signup', user);
+    return this.http.post<NewUser>('http://localhost:3000/user/signup', user);
+  }
+
+  // tslint:disable-next-line:typedef
+  checkExistingUser(username: string) {
+    return this.http.get(`http://localhost:3000/user/exists/${username}`);
   }
 }
