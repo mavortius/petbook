@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../../authentication/authentication.service';
 
@@ -11,13 +12,19 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor(private authentication: AuthenticationService) {}
+  constructor(
+    private router: Router,
+    private authentication: AuthenticationService
+  ) {}
 
   ngOnInit(): void {}
 
   login(): void {
     this.authentication.authenticate(this.username, this.password).subscribe(
-      (response) => console.log('Autenticado com sucesso!'),
+      (response) => {
+        console.log('User authenticated', response.body);
+        this.router.navigate(['animals']);
+      },
       (error) => {
         alert('Usuário ou senha inválidos!');
         console.error(error);
