@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './components/header/header.module';
 import { FooterModule } from './components/footer/footer.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +14,7 @@ import { FooterModule } from './components/footer/footer.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    AuthenticationModule,
     HeaderModule,
     FooterModule,
   ],

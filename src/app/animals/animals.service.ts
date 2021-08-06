@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Animals } from './animal';
-import { TokenService } from '../authentication/token.service';
+import { Animal, Animals } from './animal';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AnimalsService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(private http: HttpClient) {}
 
   getListForUser(username: string): Observable<Animals> {
-    const token = this.tokenService.getToken() || '';
-    const headers = new HttpHeaders().append('x-access-token', token);
-    return this.http.get<Animals>(`${environment.apiUrl}/${username}/photos`, {
-      headers,
-    });
+    return this.http.get<Animals>(`${environment.apiUrl}/${username}/photos`);
+  }
+
+  findById(id: number): Observable<Animal> {
+    return this.http.get<Animal>(`${environment.apiUrl}/photos/${id}`);
   }
 }
