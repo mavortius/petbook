@@ -9,6 +9,7 @@ import { AnimalPhotoGridComponent } from './animal-photo-grid/animal-photo-grid.
 import { AnimalDetailsComponent } from './animal-details/animal-details.component';
 import { CommentsComponent } from './animal-details/comments/comments.component';
 import { SharedModule } from '../shared/shared.module';
+import { NewAnimalComponent } from './new-animal/new-animal.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
     AnimalPhotoGridComponent,
     AnimalDetailsComponent,
     CommentsComponent,
+    NewAnimalComponent,
   ],
   imports: [CommonModule, SharedModule, AnimalsRoutingModule, CardModule],
 })

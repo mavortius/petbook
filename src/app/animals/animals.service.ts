@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, mapTo } from 'rxjs/operators';
 
@@ -39,5 +39,21 @@ export class AnimalsService {
           err.status === NOT_MODIFIED ? of(false) : throwError(err)
         )
       );
+  }
+
+  upload(
+    description: string,
+    allowComments: boolean,
+    imageFile: File
+  ): Observable<HttpEvent<unknown>> {
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('allowComments', allowComments ? 'true' : 'false');
+    formData.append('imageFile', imageFile);
+
+    return this.http.post(`${environment.apiUrl}/photos/upload`, formData, {
+      observe: 'events',
+      reportProgress: true,
+    });
   }
 }
