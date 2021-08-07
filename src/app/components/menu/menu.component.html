@@ -1,1 +1,8 @@
-<p>menu works!</p>
+<div [ngClass]="{'menu-active':showMenu}">
+  <div class="menu-bar">
+    <i class="fa fa-window-close" (click)="toggle()" (keyup.space)="toggle()"></i>
+    <ng-content></ng-content>
+  </div>
+
+  <div class="overlay" (click)="toggle()"></div>
+</div>
